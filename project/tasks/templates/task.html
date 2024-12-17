@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefa</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="main">
+        <h1>Tarefa - {{ task.title }}</h1>
+        <div>
+            <p>Descrição: {{ task.description }}</p>
+            <p>Concluída: {{ task.complete }}</p>
+        </div>
+        <div>
+            <a href="{% url 'update_task' task.id %}">Editar</a>
+            <form method="post" action="{% url 'delete_task' task.id %}">
+                {% csrf_token %}
+                <button type="submit">Excluir</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
